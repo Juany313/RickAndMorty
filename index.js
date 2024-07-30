@@ -1,5 +1,5 @@
 const server = require("./src/server");
-const database = require("./src/db")
+const {database} = require("./src/db")
 const PORT = 3001;
 
 

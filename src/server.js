@@ -1,4 +1,5 @@
 const express = require("express");
+const {Episode} = require("./db")
 
 const server = express();
 
@@ -9,4 +10,3 @@ server.get("/characters", (req, res)=>{
 module.exports = server;
 
 
-//! 18 minutos
