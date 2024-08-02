@@ -1,12 +1,23 @@
 const express = require("express");
-const {Episode} = require("./db")
+const cors = require("cors");
+const morgan = require("morgan");
+
+
+//Routes
+const mainRoutes = require("./routes/mainRoutes")
 
 const server = express();
 
-server.get("/characters", (req, res)=>{
-    res.send("Información sobre todos los personajes")
+server.use(cors());
+server.use(morgan("dev"));
+server.use(express.json())
+
+server.use((req,res,next)=>{
+    console.log("Hola, estoy pasando por el midleware");
+    next();
 })
 
-module.exports = server;
+server.use(mainRoutes);
 
+module.exports = server;
 
