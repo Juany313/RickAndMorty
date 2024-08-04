@@ -1,14 +1,19 @@
 
 const {Router} = require("express");
 const{
-    findCharactersBDDHandler, 
-    createCharactersHandler,
-    findCharacterByIDHandler}= require("../handlers/characters/index")
+    findCharactersBDDHandler,
+    findCharactersApiHandler,
+    findAllCharactersHandler, 
+    findCharacterByIDHandler,
+    createCharactersHandler
+} = require("../handlers/characters/index")
 
 const charactersRoutes = Router();
 
 
-charactersRoutes.get("/", findCharactersBDDHandler)
+charactersRoutes.get("/BDD", findCharactersBDDHandler)
+charactersRoutes.get("/Api", findCharactersApiHandler)
+charactersRoutes.get("/", findAllCharactersHandler)
 charactersRoutes.get("/:id", findCharacterByIDHandler)
 charactersRoutes.post("/", createCharactersHandler)
 

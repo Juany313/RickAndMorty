@@ -1,16 +1,41 @@
 const {
     createCharacterController, 
-    findCharacterController,
+    findCharacterBDDController,
+    findCharacterApiController,
+    findAllCharacterController,
     findCharacterByIDController} = require("../../controllers/characters/index")
+
 
 const findCharactersBDDHandler  = async (req,res) => {
     try {
-        const characters = await findCharacterController()
+        const characters = await findCharacterBDDController()
            res.status(200).json(characters)
         
     } catch (error) {
         res.status(400).json({error: error.message})
     }
+}
+
+const findCharactersApiHandler  = async (req,res) => {
+    // try {
+    //     const characters = await findCharacterController()
+    //        res.status(200).json(characters)
+    const response = await findCharacterApiController()
+        res.status(200).send(response)
+    // } catch (error) {
+    //     res.status(400).json({error: error.message})
+    // }
+}
+
+const findAllCharactersHandler  = async (req,res) => {
+    // try {
+    //     const characters = await findCharacterController()
+    //        res.status(200).json(characters)
+    const response = await findAllCharacterController()
+        res.status(200).send(response)
+    // } catch (error) {
+    //     res.status(400).json({error: error.message})
+    // }
 }
 const findCharacterByIDHandler  = async (req,res) => {
     const {id} = req.params;
@@ -36,7 +61,9 @@ const createCharactersHandler = async (req,res) => {
 }
 module.exports = {
     findCharactersBDDHandler,
-    createCharactersHandler,
-    findCharacterByIDHandler
+    findCharactersApiHandler,
+    findAllCharactersHandler,
+    findCharacterByIDHandler,
+    createCharactersHandler
 }
 
